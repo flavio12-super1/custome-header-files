@@ -77,7 +77,7 @@ std::ostream& operator<<(std::ostream& os, const CreateArrayList& myList) {
     for (int i = 0; i < myList.myArray.size(); i++) {
         Pet pet = myList.myArray[i];
         os << "name: " << pet.name << ", "
-           << "age:" << pet.age << std::endl;
+           << "age: " << pet.age << std::endl;
     }
 
     return os;
