@@ -63,5 +63,14 @@ int main() {
     int index = 0;
     cout << "bird number[" << index << "]: " << birds[index] << endl;
 
+    cout << endl;
+    cout << "cat list" << endl;
+    cout << cats << endl;
+    cout << endl;
+    CreateArrayList reverseCatsList(cats);
+    reverseCatsList.reverse();
+    cout << "reverse cat list" << endl;
+    cout << reverseCatsList << endl;
+
     return 0;
 }
