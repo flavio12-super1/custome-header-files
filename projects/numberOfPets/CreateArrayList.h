@@ -7,27 +7,27 @@
 #include <stdexcept>
 #include <string>
 
-struct Success {
-    bool state;
-    int index;
-    std::string response;
-    Success() {
-        state = false;
-        index = 0;
-        response = "not found";
-    }
+// struct Success {
+//     bool state;
+//     int index;
+//     std::string response;
+//     Success() {
+//         state = false;
+//         index = 0;
+//         response = "not found";
+//     }
 
-    Success(bool state, std::string response) {
-        this->state = state;
-        this->response = response;
-    }
+//     Success(bool state, std::string response) {
+//         this->state = state;
+//         this->response = response;
+//     }
 
-    Success(bool state, int index, std::string response) {
-        this->state = state;
-        this->index = index;
-        this->response = response;
-    }
-};
+//     Success(bool state, int index, std::string response) {
+//         this->state = state;
+//         this->index = index;
+//         this->response = response;
+//     }
+// };
 
 struct Pet {
     std::string name;
@@ -131,19 +131,36 @@ class CreateArrayList {
     bool search(Pet myPet) { return myArray.search(myPet); }
 
     // find object
-    Success find(std::string name) {
-        for (int i = 0; i < myArray.size(); i++) {
-            if (myArray[i].name == name) {
-                std::string response = "found: " + name;
-                Success message(true, i, response);
-                return message;
-            }
-        }
-        Success message;
-        return message;
+    // Success find(std::string name) {
+    //     for (int i = 0; i < myArray.size(); i++) {
+    //         if (myArray[i].name == name) {
+    //             std::string response = "found: " + name;
+    //             Success message(true, i, response);
+    //             return message;
+    //         }
+    //     }
+    //     Success message;
+    //     return message;
+    // }
+    Success find(std::string nameToFind) {
+        return myArray.find(nameToFind, &Pet::name);
     }
 
     void reverse() { myArray.reverse(); }
+
+    void remove(int index) { myArray.remove(index); }
+
+    void insert(Pet value, int index) { myArray.insert(value, index); }
+
+    void deleteItem(std::string value) {
+        Success item = find(value);
+        if (item.index == -1) {
+            std::cout << "item not found" << std::endl;
+        } else {
+            std::cout << "deleted item: " << myArray[item.index] << std::endl;
+            remove(item.index);
+        }
+    }
 };
 
 // overloaded operator <<

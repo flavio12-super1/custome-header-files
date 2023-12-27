@@ -70,6 +70,13 @@ int main() {
     CreateArrayList reverseCatsList(cats);
     reverseCatsList.reverse();
     cout << "reverse cat list" << endl;
+    reverseCatsList.remove(2);
+    {
+        Pet tempPet("milo", 1);
+        reverseCatsList.insert(tempPet, 0);
+    }
+    { reverseCatsList.deleteItem("Shadow"); }
+
     cout << reverseCatsList << endl;
 
     return 0;

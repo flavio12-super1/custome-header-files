@@ -3,7 +3,32 @@
 
 #include <iostream>
 #include <ostream>
+#include <sstream>
 #include <stdexcept>
+#include <string>
+
+// here
+struct Success {
+    bool state;
+    int index;
+    std::string response;
+    Success() {
+        state = false;
+        index = 0;
+        response = "not found";
+    }
+
+    Success(bool state, std::string response) {
+        this->state = state;
+        this->response = response;
+    }
+
+    Success(bool state, int index, std::string response) {
+        this->state = state;
+        this->index = index;
+        this->response = response;
+    }
+};
 
 template <class T>
 class ArrayList;
@@ -97,6 +122,20 @@ class ArrayList {
         inflate();
     }
 
+    // find object by property
+    template <typename PropertyType>
+    Success find(PropertyType value, PropertyType T::*property) {
+                for (int i = 0; i < count; i++) {
+            if (arr[i].*property == value) {
+                std::string response = "found: " + value;
+                Success message(true, i, response);
+                return message;
+            }
+        }
+        Success message(false, -1, "not found");
+        return message;
+    }
+
     bool search(T value) const {
         for (int i = 0; i < count; i++) {
             if (value == arr[i]) {
@@ -144,6 +183,15 @@ class ArrayList {
         T result = arr[--count];
         deflate();
         return result;
+    }
+
+    void insert(T value, int index) {
+        append(value);
+        for (int i = count - 1; i > index; i--) {
+            T temp = arr[i];
+            arr[i] = arr[i - 1];
+            arr[i - 1] = temp;
+        }
     }
 
     void reverse() {
