@@ -79,5 +79,8 @@ int main() {
 
     cout << reverseCatsList << endl;
 
+    cout << "getting..." << reverseCatsList.get(reverseCatsList.size() - 1)
+         << endl;
+
     return 0;
 }

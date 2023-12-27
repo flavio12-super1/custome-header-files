@@ -7,28 +7,6 @@
 #include <stdexcept>
 #include <string>
 
-// struct Success {
-//     bool state;
-//     int index;
-//     std::string response;
-//     Success() {
-//         state = false;
-//         index = 0;
-//         response = "not found";
-//     }
-
-//     Success(bool state, std::string response) {
-//         this->state = state;
-//         this->response = response;
-//     }
-
-//     Success(bool state, int index, std::string response) {
-//         this->state = state;
-//         this->index = index;
-//         this->response = response;
-//     }
-// };
-
 struct Pet {
     std::string name;
     int age;
@@ -130,18 +108,6 @@ class CreateArrayList {
 
     bool search(Pet myPet) { return myArray.search(myPet); }
 
-    // find object
-    // Success find(std::string name) {
-    //     for (int i = 0; i < myArray.size(); i++) {
-    //         if (myArray[i].name == name) {
-    //             std::string response = "found: " + name;
-    //             Success message(true, i, response);
-    //             return message;
-    //         }
-    //     }
-    //     Success message;
-    //     return message;
-    // }
     Success find(std::string nameToFind) {
         return myArray.find(nameToFind, &Pet::name);
     }
@@ -161,6 +127,10 @@ class CreateArrayList {
             remove(item.index);
         }
     }
+
+    Pet get(int index) { return myArray.get(index); }
+
+    int size() const { return myArray.size(); }
 };
 
 // overloaded operator <<

@@ -105,6 +105,8 @@ class ArrayList {
         return arr[index];
     }
 
+    T &get(int index) const { return arr[index]; }
+
     void append(T value) {
         arr[count] = value;
         count++;
@@ -125,7 +127,7 @@ class ArrayList {
     // find object by property
     template <typename PropertyType>
     Success find(PropertyType value, PropertyType T::*property) {
-                for (int i = 0; i < count; i++) {
+        for (int i = 0; i < count; i++) {
             if (arr[i].*property == value) {
                 std::string response = "found: " + value;
                 Success message(true, i, response);
