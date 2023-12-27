@@ -143,18 +143,7 @@ class CreateArrayList {
         return message;
     }
 
-    void reverse() {
-        int start = 0;
-        int end = myArray.size() - 1;
-
-        while (start < end) {
-            Pet tempPet = myArray[start];
-            myArray[start] = myArray[end];
-            myArray[end] = tempPet;
-            start++;
-            end--;
-        }
-    }
+    void reverse() { myArray.reverse(); }
 };
 
 // overloaded operator <<
